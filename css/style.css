@@ -332,8 +332,8 @@ ul.todo#completed span {
   justify-content: center;
   position: absolute;
   left: 48.5%;
-  bottom: -34%;
-  z-index: 100;
+  bottom: 30%;
+  z-index: 1000;
 }
 
 /* Safari */
