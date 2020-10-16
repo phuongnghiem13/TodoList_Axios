@@ -1,5 +1,6 @@
 var listTask = new TaskListService();
 var validation = new Validation();
+var arrTask = [];
 
 var isLoading = true;
 getListTaskService();
@@ -9,8 +10,9 @@ function getListTaskService() {
   Loading();
   listTask.getListService().then(function (result) {
     isLoading = false;
-    Loading(); 
-    taoBang(result.data);   
+    Loading();
+    taoBang(result.data);
+    arrTask = result.data;
   })
 
     .catch(function (err) {
@@ -66,10 +68,12 @@ function deleteTask(id) {
 //Thêm Task todo
 getEle("addItem").addEventListener("click", function () {
   // Loading
-
   var input = getEle("newTask").value;
   var isValid = true;
-  isValid = validation.kiemTraRong(input, "notiInput", "Vui lòng nhập Task");
+  isValid &= validation.kiemTraRong(input, "notiInput", "Vui lòng nhập Task");
+
+  isValid &= validation.kiemTraTrungTask(input, "notiInput", "Task bị trùng", arrTask);
+
   if (!isValid) return;
 
   isLoading = true;
@@ -100,11 +104,11 @@ function changeStatus(id) {
 
       var task = new Task(id, taskName, status);
       listTask.updateTask(task)
-        .then(function(rs){
+        .then(function (rs) {
           // console.log(rs.data);
           getListTaskService();
         })
-        .catch(function(err){
+        .catch(function (err) {
           console.log(err);
         })
     })
@@ -112,20 +116,20 @@ function changeStatus(id) {
       console.log(err);
     });
 
-  
+
 }
 
 //Chuyển trạng thái
-function checkStatus(task){
-  if(task.status === "todo"){
+function checkStatus(task) {
+  if (task.status === "todo") {
     task.status = "complete";
   } else {
     task.status = "todo";
   }
 }
 
-function Loading(){
-  if (isLoading){
+function Loading() {
+  if (isLoading) {
     document.getElementsByClassName("loader")[0].style.display = "block";
     document.getElementsByClassName("card__todo")[0].style.opacity = "0";
   } else {
