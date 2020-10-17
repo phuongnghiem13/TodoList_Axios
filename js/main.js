@@ -40,7 +40,7 @@ function taoBang(arr) {
         <li>
           <span>${item.taskName}</span>
           <div class="buttons">
-            <button class="remove" onclick="deleteTask(${item.id})"><i class="fa fa-trash-alt"></i></button>
+            <button class="remove" onclick="deleteTask(${item.id})" data-toggle="modal" data-target="#popUpDelete"><i class="fa fa-trash-alt"></i></button>
             <button class="complete" onclick="changeStatus(${item.id})"><i class="fas fa-check-circle"></i></button>
           </div>
         </li>
@@ -76,13 +76,9 @@ getEle("addItem").addEventListener("click", function () {
   var input = getEle("newTask").value;
   var isValid = true;
   isValid &= validation.kiemTraRong(input, "notiInput", "Vui lòng nhập Task");
-<<<<<<< HEAD
-  if (!isValid) return;
-=======
 
   if (!isValid) return;
 
->>>>>>> f68239f73eaf47eba7d91dd37780442d3ecc8cd7
   isValid &= validation.kiemTraTrungTask(input, "notiInput", "Task bị trùng", arrTask);
 
   if (!isValid) return;
