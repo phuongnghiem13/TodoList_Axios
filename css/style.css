@@ -336,6 +336,10 @@ ul.todo#completed span {
   z-index: 1000;
 }
 
+.alert-danger {
+  background-color: unset;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
