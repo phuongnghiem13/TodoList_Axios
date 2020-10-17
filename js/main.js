@@ -72,6 +72,8 @@ getEle("addItem").addEventListener("click", function () {
   var isValid = true;
   isValid &= validation.kiemTraRong(input, "notiInput", "Vui lòng nhập Task");
 
+  if (!isValid) return;
+
   isValid &= validation.kiemTraTrungTask(input, "notiInput", "Task bị trùng", arrTask);
 
   if (!isValid) return;
